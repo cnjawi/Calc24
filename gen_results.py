@@ -1,18 +1,7 @@
 from cqltr import figure
+from timer import timer
 import sqlite3
 
-from time import perf_counter
-from typing import Callable
-
-def timer(func: Callable) -> Callable:
-    def clocked(*args, **kargs):
-        st = perf_counter()
-        res = func(*args, **kargs)
-        ed = perf_counter()
-        print(f'[{ed-st}s] {func.__name__}()')
-        return res
-    clocked.__name__ = func.__name__
-    return clocked
 
 conn = sqlite3.connect('results.db')
 cur = conn.cursor()

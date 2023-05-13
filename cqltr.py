@@ -1,6 +1,6 @@
 from ctypes import CDLL, c_int, c_char_p, c_bool
 
-loc = "x64\\Release\\cqltr.dll"
+loc = "build\\Release\\cqltr.dll"
 
 try:
     cqltr = CDLL(loc)
