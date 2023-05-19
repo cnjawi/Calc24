@@ -48,7 +48,7 @@ void fill(expr dst[], expr src1[], expr src2[], int size1, int size2) {
 }
 
 //过滤完全相同的结果，并返回
-void filter(expr src[], int size, std::stringstream& dst, int* cnt) {
+void output(expr src[], int size, std::stringstream& dst, int* cnt) {
     std::string tmp[78], s;
     int idx = 0;
     for (int i = 0; i < size; i++) {
@@ -83,8 +83,8 @@ const char* figure(int exrcs[4]) {
 
     std::stringstream ss;
     int total = 0;
-    filter(quad1, 648, ss, &total);
-    filter(quad2, 2592, ss, &total);
+    output(quad1, 648, ss, &total);
+    output(quad2, 2592, ss, &total);
 
     ss << "Total: " << total << '\n';
     const std::string* s = new std::string(ss.str());
