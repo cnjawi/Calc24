@@ -1,5 +1,8 @@
 {
     "clangd.fallbackFlags": [
         "-std=c++17"
-    ]
+    ],
+    "cmake.debugConfig": {
+        "args": ["play"]
+    }
 }
