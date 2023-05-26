@@ -8,9 +8,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 message("\n[Info] Building on ${CMAKE_HOST_SYSTEM_NAME} platform...")
 message("[Info] Currently using ${CMAKE_CXX_COMPILER_ID} compiler...\n")
 
-if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU AND 
-    ${CMAKE_HOST_SYSTEM_NAME} MATCHES Windows)
-    add_compile_options("-fexec-charset=gbk")
+if(${CMAKE_HOST_SYSTEM_NAME} MATCHES Windows)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    if(${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
+        add_compile_options("-fexec-charset=gbk")
+    endif()
 endif()
 
 file(GLOB cqltr_src "cqltr/*.cpp")
