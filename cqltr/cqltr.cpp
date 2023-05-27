@@ -86,7 +86,7 @@ const char* figure(int exrcs[4]) {
     output(quad1, 648, ss, &total);
     output(quad2, 2592, ss, &total);
 
-    ss << "Total: " << total << '\n';
+    ss << "Total: " << (total/10==0 ? " " : "") << total << '\n';
     const std::string* s = new std::string(ss.str());
     return s->c_str();
 }
