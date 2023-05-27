@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 		for (int i = 0; i < 4; i++) std::cout << exrcs[i] << ' ';
 		std::cout << "\n";
 		std::string exp;
-		while (true)
+		for (;;)
 		{
 			std::cout << "\n>>> ";
 			std::getline(std::cin, exp);

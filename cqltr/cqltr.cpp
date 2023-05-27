@@ -48,11 +48,12 @@ void fill(expr dst[], expr src1[], expr src2[], int size1, int size2) {
 }
 
 //过滤完全相同的结果，并返回
-void output(expr src[], int size, std::stringstream& dst, int* cnt) {
+void output(expr src[], int size, int* cnt, int* t_cnt) {
     std::string tmp[78], s;
     int idx = 0;
     for (int i = 0; i < size; i++) {
         if (src[i].val > 23.99 && src[i].val < 24.01) {
+            ++(*t_cnt);
             s = src[i].str();
             bool is_different = true;
             for (int j = 0; j < idx; j++) {
@@ -62,7 +63,6 @@ void output(expr src[], int size, std::stringstream& dst, int* cnt) {
                 }
             }
             if (is_different) {
-                dst << s << '\n';
                 tmp[idx] = s;
                 ++(*cnt);
                 ++idx;
@@ -82,11 +82,15 @@ const char* figure(int exrcs[4]) {
     fill(quad2, unary, ternary, 4, 432);
 
     std::stringstream ss;
-    int total = 0;
-    output(quad1, 648, ss, &total);
-    output(quad2, 2592, ss, &total);
+    int total1 = 0, total2 = 0, T1 = 0, T2 = 0;
+    output(quad1, 648, &total1, &T1);
+    output(quad2, 2592, &total2, &T2);
 
-    ss << "Total: " << total << '\n';
+    ss << (T1/10==0 ? " " : "") << T1 << '/';
+    ss << (total1/10==0 ? " ": "") << total1 << '\n';
+    ss << (T2/10==0 ? " " : "") << T2 << '/';
+    ss << (total2/10==0 ? " ": "") << total2 << '\n';
+
     const std::string* s = new std::string(ss.str());
     return s->c_str();
 }
