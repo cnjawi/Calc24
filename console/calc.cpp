@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "utils.h"
-#include "../cqltr/cqltr.h"
+#include "cqltr.h"
 
 void calculate(char* argv[6])
 {

@@ -1,4 +1,6 @@
 build/
+.xmake/
+.vscode/compile_commands.json
 *.pyc
 *.db
 *.idx

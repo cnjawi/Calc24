@@ -2,7 +2,7 @@
 #include <string>
 
 #include "utils.h"
-#include "../cqltr/cqltr.h"
+#include "cqltr.h"
 
 int main(int argc, char* argv[])
 {

@@ -2,7 +2,7 @@
 #include <stack>
 
 #include "utils.h"
-#include "../cqltr/expr.h"
+#include "expr.h"
 
 // 用calc和priority的中缀表达式求值
 

@@ -4,7 +4,7 @@
 #include <stack>
 
 #include "utils.h"
-#include "../cqltr/cqltr.h"
+#include "cqltr.h"
 
 int* gen_exrcs()
 {

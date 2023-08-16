@@ -1,17 +1,7 @@
 from ctypes import CDLL, c_int, c_char_p, c_bool
 
-locs: tuple[str] = ("build\\Release\\cqltr.dll", "C:\\CodeBase\\Calc24\\build\\libcqltr.dll")
-found = False
-for loc in locs:
-    try:
-        cqltr = CDLL(loc, winmode=0)
-    except FileNotFoundError:
-        continue
-    found = True
-    break
-if not found:
-    print(f'文件不存在')
-    exit()
+loc = 'build/windows/x64/debug/cqltr.dll'  # 手动更改
+cqltr = CDLL(loc)
 try:
     fi, va = cqltr.figure, cqltr.validate
 except AttributeError:
@@ -27,3 +17,6 @@ def figure(a: int, b: int, c: int, d: int) -> str:
 
 def validate(a: int, b: int, c: int, d: int) -> bool:
     return bool(va(FourInt(a, b, c, d)))
+
+if __name__ == '__main__':
+    print(figure(3, 3, 8, 8))
