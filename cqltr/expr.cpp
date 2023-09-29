@@ -1,17 +1,18 @@
 ﻿#include <sstream>
+#include <stdint.h>
 #include <string>
 
 #include "expr.h"
 
-expr::expr() : val(0.), opt('&'), pos(0), next{nullptr,nullptr} {};
+expr_base::expr_base() : val(0.), opt('&'), next{nullptr,nullptr} {};
 
 /*深度为1的单层求值*/
-void expr::eval() {
+void expr_base::eval() {
     if (opt != '&') val = calc<float>[opt - 42](next[0]->val, next[1]->val);
 }
 
 /*递归求值 reCURSIVE evalUATION*/
-void expr::reval() {
+void expr_base::reval() {
     if (opt != '&') {
         next[0]->reval();
         next[1]->reval();
@@ -19,7 +20,7 @@ void expr::reval() {
     }
 }
 
-std::string expr::str(char pre, bool AfterSubOrDiv) {
+std::string expr_base::str(char pre, bool AfterSubOrDiv) {
     std::stringstream ss;  // stringstream 非常适合格式化输出一长串数据
     bool JudgePos = (opt == '-' || opt == '/');
     if (opt == '&') {
@@ -35,6 +36,15 @@ std::string expr::str(char pre, bool AfterSubOrDiv) {
     }
     return ss.str();
 }
+
+void expr_base::set(char operation, expr_base* left, expr_base* right) {
+    next[0] = left;
+    next[1] = right;
+    opt = operation;
+    eval();
+}
+
+expr::expr() : pos(0) {}
 
 void expr::set(char operation, expr* left, expr* right) {
     next[0] = left;

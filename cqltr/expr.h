@@ -3,16 +3,22 @@
 #include <stdint.h>
 
 /*表达式*/
-struct expr {
+struct expr_base {
     float val;      // 数值
     char opt;       // 运算符，包含 + - * / 以及表示数值节点的占位符&
-    uint8_t pos;    // 记录取值的位置，位操作
-    expr* next[2];  // 左右子节点
+    expr_base* next[2];  // 左右子节点
 
-    expr();
+    expr_base();
     void eval();                      // 单层求值
     void reval();                     // 递归求值
     std::string str(char pre = '+', bool AfterSubOrDiv = false);  // 递归转化为中缀表达式
+    void set(char, expr_base*, expr_base*);
+};
+
+struct expr : expr_base {
+    uint8_t pos;    // 记录取值的位置，位操作
+
+    expr();
     void set(char operation, expr* left, expr* right);
 };
 
