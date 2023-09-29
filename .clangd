@@ -1,2 +1,6 @@
 CompileFlags:
   CompilationDatabase: .vscode/
+
+InlayHints:
+  Designators: No
+  ParameterNames: No
